@@ -6,12 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.datateleapp.ui.theme.DataTeleAppTheme
 import kotlin.random.Random
@@ -19,6 +17,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.ui.graphics.toArgb
 
+//Main Func. Starts app
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +29,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+//Component for randomizing colors
 @Composable
 fun ColorRandomizer() {
     var color by remember { mutableStateOf(randomColor()) }
@@ -40,6 +40,7 @@ fun ColorRandomizer() {
             .fillMaxSize()
             .padding(16.dp)
     ) {
+        //Loops through colors and applies styling to each
         colorVariants.forEach { variant ->
             Box(
                 modifier = Modifier
@@ -66,6 +67,7 @@ fun ColorRandomizer() {
     }
 }
 
+//Returns a color object.
 fun randomColor(): Color {
     return Color(
         red = Random.nextFloat(),
@@ -74,6 +76,7 @@ fun randomColor(): Color {
     )
 }
 
+//Returns variants/shades of the same color passed in as parameter
 fun generateColorVariants(baseColor: Color): List<Color> {
     val variants = mutableListOf<Color>()
     for (i in 1..4) {
@@ -88,10 +91,3 @@ fun generateColorVariants(baseColor: Color): List<Color> {
     return variants
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    DataTeleAppTheme {
-        ColorRandomizer()
-    }
-}
